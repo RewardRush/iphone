@@ -75,7 +75,7 @@ document.getElementById('parameterForm').addEventListener('submit', function(eve
   var currentUrl = window.location.href; // Get the current URL
   
   // Check if the current URL contains "admin/", if so, don't append the parameter
-  if (!currentUrl.includes(window.location.origin + '/admin/')) {
+  if (!currentUrl.includes(window.location.origin + '/admin')) {
     var resultURL;
     if (currentUrl.includes('?')) {
       // If there are existing query parameters, append the new parameter
