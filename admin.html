@@ -51,7 +51,7 @@
 <body>
 
 <div class="container mt-5">
-  <h1>Add Parameter to Domain URL</h1>
+  <h1>Add Parameter to URL</h1>
 
   <form id="parameterForm">
     <div class="mb-3">
@@ -72,9 +72,16 @@ document.getElementById('parameterForm').addEventListener('submit', function(eve
   event.preventDefault();
   
   var parameter = document.getElementById('parameterInput').value;
-  var domainUrl = window.location.origin; // Get the domain URL
+  var currentUrl = window.location.href; // Get the current URL
   
-  var resultURL = domainUrl + '?' + parameter; // Concatenate domain URL with parameter
+  var resultURL;
+  if (currentUrl.includes('?')) {
+    // If there are existing query parameters, append the new parameter
+    resultURL = currentUrl + '&' + parameter;
+  } else {
+    // If no existing query parameters, append the new parameter with '?'
+    resultURL = currentUrl + '?' + parameter;
+  }
   
   document.getElementById('resultURL').innerHTML = "Your complete URL with parameter: <span class='copyable'>" + resultURL + "</span>";
 });
