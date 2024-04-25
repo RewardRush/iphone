@@ -51,7 +51,7 @@
 <body>
 
 <div class="container mt-5">
-  <h1>Add Parameter to URL</h1>
+  <h1>Add Parameter to Domain URL</h1>
 
   <form id="parameterForm">
     <div class="mb-3">
@@ -72,13 +72,9 @@ document.getElementById('parameterForm').addEventListener('submit', function(eve
   event.preventDefault();
   
   var parameter = document.getElementById('parameterInput').value;
-  var currentUrl = window.location.href; // Get the current URL
+  var domainUrl = window.location.origin; // Get the domain URL
   
-  // Split the current URL by "?" to get the base URL
-  var baseUrl = currentUrl.split('?')[0];
-  
-  // Append the parameter to the base URL
-  var resultURL = baseUrl + '?' + parameter;
+  var resultURL = domainUrl + '?' + parameter; // Concatenate domain URL with parameter
   
   document.getElementById('resultURL').innerHTML = "Your complete URL with parameter: <span class='copyable'>" + resultURL + "</span>";
 });
