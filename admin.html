@@ -74,16 +74,21 @@ document.getElementById('parameterForm').addEventListener('submit', function(eve
   var parameter = document.getElementById('parameterInput').value;
   var currentUrl = window.location.href; // Get the current URL
   
-  var resultURL;
-  if (currentUrl.includes('?')) {
-    // If there are existing query parameters, append the new parameter
-    resultURL = currentUrl + '&' + parameter;
-  } else {
-    // If no existing query parameters, append the new parameter with '?'
-    resultURL = currentUrl + '?' + parameter;
-  }
+  // Check if the current URL contains "admin/" or "admin.html/"
+  if (!currentUrl.includes('admin/') && !currentUrl.includes('admin.html/')) {
+    var resultURL;
+    if (currentUrl.includes('?')) {
+      // If there are existing query parameters, append the new parameter
+      resultURL = currentUrl + '&' + parameter;
+    } else {
+      // If no existing query parameters, append the new parameter with '?'
+      resultURL = currentUrl + '?' + parameter;
+    }
   
-  document.getElementById('resultURL').innerHTML = "Your complete URL with parameter: <span class='copyable'>" + resultURL + "</span>";
+    document.getElementById('resultURL').innerHTML = "Your complete URL with parameter: <span class='copyable'>" + resultURL + "</span>";
+  } else {
+    document.getElementById('resultURL').innerHTML = "Your URL contains 'admin/' or 'admin.html/', parameter cannot be added.";
+  }
 });
 
 // Copy URL to clipboard
